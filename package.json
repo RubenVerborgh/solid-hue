@@ -38,6 +38,8 @@
     "prepare": "npm run build"
   },
   "dependencies": {
+    "@types/node-fetch": "^2.5.7",
+    "node-fetch": "^2.6.1"
   },
   "peerDependencies": {
     "@solid/community-server": "^0.4.0"
