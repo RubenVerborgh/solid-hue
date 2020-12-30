@@ -1,0 +1,59 @@
+{
+  "name": "solid-hue",
+  "version": "0.0.0",
+  "description": "A Community Solid Server backend for Philips Hue",
+  "keywords": [
+    "solid",
+    "linked-data",
+    "rdf",
+    "ldp"
+  ],
+  "license": "MIT",
+  "author": "Ruben Verborgh <ruben@verborgh.org> (https://ruben.verborgh.org/)",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": "git@github.com:RubenVerborgh/solid-hue.git",
+  "bugs": {
+    "url": "https://github.com/RubenVerborgh/solid-hue/issues"
+  },
+  "homepage": "https://github.com/RubenVerborgh/solid-hue#readme",
+  "files": [
+    "dist"
+  ],
+  "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue",
+  "lsd:components": "dist/components/components.jsonld",
+  "lsd:contexts": {
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^0.0.0/components/context.jsonld": "dist/components/context.jsonld"
+  },
+  "lsd:importPaths": {
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^0.0.0/components/": "dist/components/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^0.0.0/config/": "config/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^0.0.0/dist/": "dist/"
+  },
+  "scripts": {
+    "build": "npm run build:ts && npm run build:components",
+    "build:components": "componentsjs-generator -s src -c dist/components -i .componentsignore",
+    "build:ts": "tsc",
+    "lint": "eslint . --cache",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "@solid/community-server": "^0.4.0"
+  },
+  "devDependencies": {
+    "@solid/community-server": "^0.4.0",
+    "@tsconfig/node14": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "componentsjs-generator": "^1.6.0",
+    "eslint": "^7.16.0",
+    "eslint-config-es": "^3.26.13",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-tsdoc": "^0.2.10",
+    "eslint-plugin-unused-imports": "^1.0.1",
+    "husky": "^4.3.6",
+    "typescript": "^4.1.3"
+  }
+}
