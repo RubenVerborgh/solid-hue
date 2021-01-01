@@ -19,6 +19,7 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+    '@typescript-eslint/lines-between-class-members': ['error', { exceptAfterSingleLine: true }],
     '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
     '@typescript-eslint/space-before-function-paren': ['error', 'never'],
     'array-bracket-spacing': ['error', 'never'],
@@ -28,6 +29,7 @@ module.exports = {
     'no-unused-vars': ['error', { args: 'none' }],
     'padding-line-between-statements': 'off',
     'quote-props': ['error', 'consistent-as-needed'],
+    'sort-imports': 'off',
     'strict': 'off',
   },
   overrides: [

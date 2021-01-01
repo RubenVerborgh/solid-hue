@@ -23,12 +23,13 @@
   "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue",
   "lsd:components": "dist/components/components.jsonld",
   "lsd:contexts": {
-    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^0.0.0/components/context.jsonld": "dist/components/context.jsonld"
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/components/context.jsonld": "dist/components/context.jsonld"
   },
   "lsd:importPaths": {
-    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^0.0.0/components/": "dist/components/",
-    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^0.0.0/config/": "config/",
-    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^0.0.0/dist/": "dist/"
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/": "/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/components/": "dist/components/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/config/": "config/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/dist/": "dist/"
   },
   "scripts": {
     "build": "npm run build:ts && npm run build:components",

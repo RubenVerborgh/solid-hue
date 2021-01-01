@@ -1,7 +1,11 @@
 {
   "@context": [
-    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^0.0.0/components/context.jsonld",
-    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^1.0.0/components/context.jsonld"
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@solid/community-server/^1.0.0/components/context.jsonld",
+    {
+      "solid-hue": "urn:solid-hue:default:",
+      "solid-server": "urn:solid-server:default:"
+    }
   ],
   "import": [
     "files-scs:config/presets/acl.json",
@@ -26,21 +30,26 @@
   ],
   "@graph": [
     {
-      "@id": "urn:solid-server:default:RegexRouterRule",
+      "@id": "solid-server:RegexRouterRule",
       "RegexRouterRule:_storeMap": [
         {
-          "RegexRouterRule:_storeMap_key": "^/home/$",
-          "RegexRouterRule:_storeMap_value": { "@id": "urn:solid-server:default:PhilipsHueStore" }
+          "RegexRouterRule:_storeMap_key": "^/home/lights$",
+          "RegexRouterRule:_storeMap_value": { "@id": "solid-hue:PhilipsHueStore" }
         },
         {
           "RegexRouterRule:_storeMap_key": ".*",
-          "RegexRouterRule:_storeMap_value": { "@id": "urn:solid-server:default:MemoryResourceStore" }
+          "RegexRouterRule:_storeMap_value": { "@id": "solid-server:MemoryResourceStore" }
         }
       ]
     },
     {
-      "@id": "urn:solid-server:default:PhilipsHueStore",
-      "@type": "PhilipsHueStore"
+      "@id": "solid-hue:PhilipsHueStore",
+      "@type": "PhilipsHueStore",
+      "PhilipsHueStore:_options_fetcher": { "@id": "solid-hue:AuthenticatedFetcher" }
+    },
+    {
+      "@id": "solid-hue:AuthenticatedFetcher",
+      "@type": "AuthenticatedFetcher"
     }
   ]
 }
