@@ -39,7 +39,8 @@
   },
   "dependencies": {
     "@types/node-fetch": "^2.5.7",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "urijs": "^1.19.5"
   },
   "peerDependencies": {
     "@solid/community-server": "^0.4.0"

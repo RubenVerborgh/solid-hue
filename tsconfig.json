@@ -9,6 +9,10 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "stripInternal": true,
+    "typeRoots": [
+      "types",
+      "node_modules/@types"
+    ]
   },
   "include": [
     "src"
