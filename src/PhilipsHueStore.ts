@@ -3,8 +3,10 @@ import {
   CONTENT_TYPE,
   getLoggerFor,
   guardedStreamFrom,
+  readableToString,
   NotImplementedHttpError,
   RepresentationMetadata,
+  UnsupportedMediaTypeHttpError,
 } from '@solid/community-server';
 import type {
   Conditions,
@@ -20,6 +22,7 @@ import { createUrlTemplates } from './UrlTemplates';
 
 const templates = createUrlTemplates({
   lights: 'https://api.meethue.com/bridge/{username}/lights',
+  light: 'https://api.meethue.com/bridge/{username}/lights/{light}/state',
 });
 
 /**
@@ -57,9 +60,24 @@ export class PhilipsHueStore implements ResourceStore {
     };
   }
 
+  public async modifyResource(identifier: ResourceIdentifier, patch: Patch, conditions?: Conditions): Promise<void> {
+    if (patch.metadata.contentType !== HueContentType) {
+      throw new UnsupportedMediaTypeHttpError(`Only ${HueContentType} is supported`);
+    }
+
+    // Each light in the patch needs to be updated separately
+    const lights = JSON.parse(await readableToString(patch.data));
+    const updates = Object.keys(lights).map(async(light): Promise<void> =>
+      this.updateLight(light, lights[light].state || {}));
+    await Promise.all(updates);
+  }
+
   public async setRepresentation(identifier: ResourceIdentifier, representation: Representation,
     conditions?: Conditions): Promise<void> {
-    throw new NotImplementedHttpError();
+    // Technically, PUT is for replacing entire representations, and PATCH for (partial) updates.
+    // However, any partial or incomplete resource state that could arrive via PUT
+    // is complemented by the current physical state of the lights, so we just treat it as a PATCH.
+    await this.modifyResource(identifier, representation, conditions);
   }
 
   public async addResource(container: ResourceIdentifier, representation: Representation,
@@ -71,7 +89,16 @@ export class PhilipsHueStore implements ResourceStore {
     throw new NotImplementedHttpError();
   }
 
-  public async modifyResource(identifier: ResourceIdentifier, patch: Patch, conditions?: Conditions): Promise<void> {
-    throw new NotImplementedHttpError();
+  protected async updateLight(id: string, state: Record<string, any>): Promise<void> {
+    const url = templates.light.expand({ ...this.settings, light: id });
+    this.logger.debug(`Updating light status of ${url}`, { state });
+    const response = await this.fetcher.fetch(url, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(state),
+    });
+    assert.equal(response.status, 200);
   }
 }
