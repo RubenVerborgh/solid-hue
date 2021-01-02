@@ -39,7 +39,9 @@
     "prepare": "npm run build"
   },
   "dependencies": {
+    "@rdfjs/data-model": "^1.2.0",
     "@types/node-fetch": "^2.5.7",
+    "@types/rdf-js": "^4.0.0",
     "node-fetch": "^2.6.1",
     "urijs": "^1.19.5"
   },

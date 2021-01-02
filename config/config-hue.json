@@ -34,7 +34,7 @@
       "RegexRouterRule:_storeMap": [
         {
           "RegexRouterRule:_storeMap_key": "^/home/lights$",
-          "RegexRouterRule:_storeMap_value": { "@id": "solid-hue:PhilipsHueStore" }
+          "RegexRouterRule:_storeMap_value": { "@id": "solid-hue:RdfEnabledPhilipsHueStore" }
         },
         {
           "RegexRouterRule:_storeMap_key": ".*",
@@ -50,6 +50,34 @@
     {
       "@id": "solid-hue:AuthenticatedFetcher",
       "@type": "AuthenticatedFetcher"
+    },
+    {
+      "@id": "solid-hue:RdfEnabledPhilipsHueStore",
+      "@type": "RepresentationConvertingStore",
+      "RepresentationConvertingStore:_source": {
+        "@id": "solid-hue:PhilipsHueStore"
+      },
+      "RepresentationConvertingStore:_options_outConverter": {
+        "@id": "solid-hue:RepresentationConverter"
+      },
+      "RepresentationConvertingStore:_options_inConverter": {
+        "@id": "solid-hue:RepresentationConverter"
+      },
+      "RepresentationConvertingStore:_options_inType": "application/vnd.philips.hue+json"
+    },
+    {
+      "@id": "solid-hue:RepresentationConverter",
+      "@type": "WaterfallHandler",
+      "WaterfallHandler:_handlers": [
+        {
+          "@id": "solid-hue:HueToRdfConverter",
+          "@type": "ChainedConverter",
+          "ChainedConverter:_converters": [
+            { "@type": "HueToQuadConverter" },
+            { "@id": "solid-server:QuadToRdfConverter" }
+          ]
+        }
+      ]
     }
   ]
 }

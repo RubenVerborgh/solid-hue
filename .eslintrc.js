@@ -25,6 +25,7 @@ module.exports = {
     'array-bracket-spacing': ['error', 'never'],
     'class-methods-use-this': 'off',
     'comma-dangle': ['error', 'always-multiline'],
+    'import/no-unresolved': 'off',
     'no-duplicate-imports': 'off',
     'no-unused-vars': ['error', { args: 'none' }],
     'padding-line-between-statements': 'off',
