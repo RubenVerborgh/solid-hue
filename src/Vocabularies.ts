@@ -20,3 +20,15 @@ export const XSD = createUriAndTermNamespace('http://www.w3.org/2001/XMLSchema#'
   'boolean',
   'integer',
 );
+
+export const stateMapping = {
+  [HUE.on]: { field: 'on', dataType: XSD.terms.boolean },
+  [HUE.hue]: { field: 'hue', dataType: XSD.terms.integer },
+  [HUE.saturation]: { field: 'sat', dataType: XSD.terms.integer },
+  [HUE.brightness]: { field: 'bri', dataType: XSD.terms.integer },
+};
+
+export const valueParsers = {
+  [XSD.integer]: Number,
+  [XSD.boolean]: (value: string): boolean => !/^(?:0+|false)$/iu.test(value),
+};

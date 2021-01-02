@@ -76,6 +76,14 @@
             { "@type": "HueToQuadConverter" },
             { "@id": "solid-server:QuadToRdfConverter" }
           ]
+        },
+        {
+          "@id": "solid-hue:RdfToHueConverter",
+          "@type": "ChainedConverter",
+          "ChainedConverter:_converters": [
+            { "@id": "solid-server:RdfToQuadConverter" },
+            { "@type": "QuadToHueConverter" }
+          ]
         }
       ]
     }

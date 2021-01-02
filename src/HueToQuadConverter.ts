@@ -1,9 +1,7 @@
 import { PassThrough } from 'stream';
 import { namedNode, literal } from '@rdfjs/data-model';
 import {
-  CONTENT_TYPE,
-  INTERNAL_QUADS,
-  RDF,
+  CONTENT_TYPE, INTERNAL_QUADS, RDF,
   RepresentationMetadata,
   TypedRepresentationConverter,
   guardStream,
@@ -15,7 +13,7 @@ import type {
   RepresentationConverterArgs,
   ResourceIdentifier,
 } from '@solid/community-server';
-import { DOGONT, RDFS, HUE, XSD } from './Vocabularies';
+import { DOGONT, RDFS, stateMapping } from './Vocabularies';
 import { HueContentType } from './Constants';
 
 /**
@@ -53,12 +51,11 @@ export class HueToQuadConverter extends TypedRepresentationConverter {
 
   protected addQuadsFromLight(data: PassThrough, source: ResourceIdentifier, light: Record<string, any>): void {
     const id = namedNode(`${source.path}#${encodeURIComponent(light.id)}`);
-    const { state } = light;
     pushQuad(data, id, RDF.terms.type, DOGONT.terms.Lamp);
     pushQuad(data, id, RDFS.terms.label, literal(light.name));
-    pushQuad(data, id, HUE.terms.on, literal(`${state.on}`, XSD.terms.boolean));
-    pushQuad(data, id, HUE.terms.hue, literal(`${state.hue}`, XSD.terms.integer));
-    pushQuad(data, id, HUE.terms.saturation, literal(`${state.sat}`, XSD.terms.integer));
-    pushQuad(data, id, HUE.terms.brightness, literal(`${state.bri}`, XSD.terms.integer));
+    for (const predicate of Object.keys(stateMapping)) {
+      const { field, dataType } = stateMapping[predicate];
+      pushQuad(data, id, predicate, literal(`${light.state[field]}`, dataType));
+    }
   }
 }
