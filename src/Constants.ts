@@ -1,1 +1,1 @@
-export const HueContentType = 'application/vnd.philips.hue+json';
+export const HueContentType = 'internal/vnd.philips.hue+json';

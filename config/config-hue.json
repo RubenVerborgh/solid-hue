@@ -63,7 +63,7 @@
       "RepresentationConvertingStore:_options_inConverter": {
         "@id": "solid-hue:RepresentationConverter"
       },
-      "RepresentationConvertingStore:_options_inType": "application/vnd.philips.hue+json"
+      "RepresentationConvertingStore:_options_inType": "internal/vnd.philips.hue+json"
     },
     {
       "@id": "solid-hue:RepresentationConverter",
