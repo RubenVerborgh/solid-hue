@@ -1,7 +1,7 @@
 import { PassThrough } from 'stream';
 import { namedNode, literal } from '@rdfjs/data-model';
 import {
-  CONTENT_TYPE, INTERNAL_QUADS, RDF,
+  CONTENT_TYPE, INTERNAL_QUADS, PREFERRED_PREFIX_TERM, RDF,
   RepresentationMetadata,
   TypedRepresentationConverter,
   guardStream,
@@ -13,7 +13,7 @@ import type {
   RepresentationConverterArgs,
   ResourceIdentifier,
 } from '@solid/community-server';
-import { DOGONT, RDFS, stateMapping } from './Vocabularies';
+import { DOGONT, HUE, RDFS, stateMapping } from './Vocabularies';
 import { HueContentType } from './Constants';
 
 /**
@@ -32,6 +32,9 @@ export class HueToQuadConverter extends TypedRepresentationConverter {
     // Create the resulting representation and its metadata
     const data = guardStream(new PassThrough({ objectMode: true }));
     const metadata = new RepresentationMetadata(representation.metadata, { [CONTENT_TYPE]: INTERNAL_QUADS });
+    metadata.addQuad(DOGONT.terms.namespace, PREFERRED_PREFIX_TERM, 'dogont');
+    metadata.addQuad(RDFS.terms.namespace, PREFERRED_PREFIX_TERM, 'rdfs');
+    metadata.addQuad(HUE.terms.namespace, PREFERRED_PREFIX_TERM, 'ph');
 
     // Parse the source asynchronously
     setImmediate(async(): Promise<void> => {
