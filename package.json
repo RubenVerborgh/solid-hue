@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/RubenVerborgh/solid-hue#readme",
   "files": [
+    "config",
     "dist"
   ],
   "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue",
