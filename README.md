@@ -42,7 +42,7 @@ and following the [set-up steps](https://developers.meethue.com/develop/hue-api/
 ## How to run
 Execute the following command:
 ```shell
-npx community-solid-server settings.json
+npx community-solid-server -c settings.json -m .
 ```
 
 Now you can access your lights
