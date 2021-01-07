@@ -69,6 +69,8 @@
       "@id": "solid-hue:RepresentationConverter",
       "@type": "WaterfallHandler",
       "WaterfallHandler:_handlers": [
+        { "@type": "HueToQuadConverter" },
+        { "@type": "QuadToHueConverter" },
         {
           "@id": "solid-hue:HueToRdfConverter",
           "@type": "ChainedConverter",
