@@ -1,0 +1,19 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/components/context.jsonld",
+    { "solid-hue": "urn:solid-hue:default:" }
+  ],
+  "import": [
+    "files-sh:config/config-hue.json"
+  ],
+  "@graph": [
+    {
+      "@id": "solid-hue:PhilipsHueStore",
+      "PhilipsHueStore:_options_username": "<YOUR PHILIPS HUE BRIDGE USERNAME>"
+    },
+    {
+      "@id": "solid-hue:AuthenticatedFetcher",
+      "AuthenticatedFetcher:_accessToken": "<YOUR API ACCESS TOKEN>"
+    }
+  ]
+}
