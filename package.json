@@ -46,10 +46,10 @@
     "urijs": "^1.19.5"
   },
   "peerDependencies": {
-    "@solid/community-server": "^0.4.0"
+    "@solid/community-server": "^0.4.1"
   },
   "devDependencies": {
-    "@solid/community-server": "^0.4.0",
+    "@solid/community-server": "^0.4.1",
     "@tsconfig/node14": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
