@@ -27,7 +27,6 @@
     "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/components/context.jsonld": "dist/components/context.jsonld"
   },
   "lsd:importPaths": {
-    "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/": "/",
     "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/components/": "dist/components/",
     "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/config/": "config/",
     "https://linkedsoftwaredependencies.org/bundles/npm/solid-hue/^1.0.0/dist/": "dist/"
