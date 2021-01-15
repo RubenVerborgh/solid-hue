@@ -19,7 +19,7 @@ From the npm package registry:
 ```shell
 mkdir my-server
 cd my-server
-npm install @solid/community-server@v0.4.0 solid-hue
+npm install @solid/community-server@v0.5.0 solid-hue
 ```
 
 As a developer:
