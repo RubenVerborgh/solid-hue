@@ -69,26 +69,12 @@
     },
     {
       "@id": "solid-hue:RepresentationConverter",
-      "@type": "WaterfallHandler",
-      "WaterfallHandler:_handlers": [
+      "@type": "ChainedConverter",
+      "ChainedConverter:_converters": [
         { "@type": "HueToQuadConverter" },
         { "@type": "QuadToHueConverter" },
-        {
-          "@id": "solid-hue:HueToRdfConverter",
-          "@type": "ChainedConverter",
-          "ChainedConverter:_converters": [
-            { "@type": "HueToQuadConverter" },
-            { "@id": "solid-server:QuadToRdfConverter" }
-          ]
-        },
-        {
-          "@id": "solid-hue:RdfToHueConverter",
-          "@type": "ChainedConverter",
-          "ChainedConverter:_converters": [
-            { "@id": "solid-server:RdfToQuadConverter" },
-            { "@type": "QuadToHueConverter" }
-          ]
-        }
+        { "@type": "RdfToQuadConverter" },
+        { "@type": "QuadToRdfConverter" }
       ]
     }
   ]
