@@ -10,6 +10,7 @@
   "import": [
     "files-scs:config/presets/acl.json",
     "files-scs:config/presets/http.json",
+    "files-scs:config/presets/identifiers/suffix-identifiers.json",
     "files-scs:config/presets/init.json",
     "files-scs:config/presets/ldp.json",
     "files-scs:config/presets/ldp/credentials-extractor.json",
@@ -23,6 +24,7 @@
     "files-scs:config/presets/middleware.json",
     "files-scs:config/presets/pod-management.json",
     "files-scs:config/presets/representation-conversion.json",
+    "files-scs:config/presets/static.json",
     "files-scs:config/presets/storage/backend/storage-memory.json",
     "files-scs:config/presets/storage/routing/regex-routing.json",
     "files-scs:config/presets/storage-wrapper.json",

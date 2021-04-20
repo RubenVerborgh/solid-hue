@@ -57,17 +57,17 @@ export class PhilipsHueStore extends BaseResourceStore {
   /**
    * Replaces the state of multiple lights via a JSON representation.
    */
-  public async setRepresentation(identifier: ResourceIdentifier, representation: Representation): Promise<void> {
+  public async setRepresentation(identifier: ResourceIdentifier, representation: Representation): Promise<ResourceIdentifier[]> {
     // Technically, PUT is for replacing entire representations, and PATCH for (partial) updates.
     // However, any partial or incomplete resource state that could arrive via PUT
     // is complemented by the current physical state of the lights, so we just treat it as a PATCH.
-    await this.modifyResource(identifier, representation);
+    return this.modifyResource(identifier, representation);
   }
 
   /**
    * Adjusts the state of multiple lights via a JSON representation.
    */
-  public async modifyResource(identifier: ResourceIdentifier, patch: Patch): Promise<void> {
+  public async modifyResource(identifier: ResourceIdentifier, patch: Patch): Promise<ResourceIdentifier[]> {
     if (patch.metadata.contentType !== HueContentType) {
       throw new UnsupportedMediaTypeHttpError(`Only ${HueContentType} is supported`);
     }
@@ -77,6 +77,8 @@ export class PhilipsHueStore extends BaseResourceStore {
     const updates = Object.keys(lights).map(async(light): Promise<void> =>
       this.setLightState(light, lights[light].state || {}));
     await Promise.all(updates);
+
+    return [identifier];
   }
 
   /**
